@@ -94,19 +94,19 @@ export const projects = [
   featured: true,
 },
 
-  {
-    id: 2,
-    title: 'MERN E-Commerce Store',
-    description:
-      'A full-stack e-commerce platform built with React, Node.js, Express and MongoDB, featuring user authentication, product browsing, cart, wishlist, orders and role-based functionality',
-    image: null,
-    gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    tags: ['React', 'Node.js', 'Express.js', 'MongoDB'],
-    liveUrl: null,
-    githubUrl: 'https://github.com/zaheemshah/mern-ecommerce',
-    featured: true,
-  },
-
+ {
+  id: 2,
+  title: 'MERN E-Commerce Store',
+  description:
+    'A full-stack e-commerce platform built with React, Node.js, Express and MongoDB, featuring user authentication, product browsing, cart, wishlist, orders and role-based functionality',
+  image: '/project-images/mern-ecommerce.png',
+  gradient: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+  tags: ['React', 'Node.js', 'Express.js', 'MongoDB'],
+  liveUrl: null,
+  githubUrl: 'https://github.com/zaheemshah/mern-ecommerce',
+  featured: true,
+},
+   
   {
     id: 3,
     title: 'Personal Portfolio',
