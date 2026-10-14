@@ -2803,3 +2803,171 @@ img {
     display: none;
   }
 }
+/* =========================================
+   HERO VOICE ACTIVE EFFECT
+   ========================================= */
+
+.hero__visual {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Soft ambient glow */
+.hero__visual::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.18) 0%,
+    rgba(99, 102, 241, 0.08) 35%,
+    transparent 70%
+  );
+  z-index: -2;
+  transition: all 0.5s ease;
+}
+
+/* Voice ON */
+.hero__visual--speaking::before {
+  animation: heroVoiceGlow 1.8s ease-in-out infinite;
+}
+
+/* Animated outer pulse */
+.hero__visual--speaking::after {
+  content: "";
+  position: absolute;
+  width: 330px;
+  height: 330px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(129, 140, 248, 0.35);
+  border-radius: 50%;
+  z-index: -1;
+  animation: heroVoicePulse 2s ease-out infinite;
+}
+
+/* Make existing decorative rings move while speaking */
+.hero__visual--speaking .hero__ring--1 {
+  animation: heroRingRotate 8s linear infinite;
+}
+
+.hero__visual--speaking .hero__ring--2 {
+  animation: heroRingRotateReverse 6s linear infinite;
+}
+
+.hero__visual--speaking .hero__ring--3 {
+  animation: heroRingPulse 1.5s ease-in-out infinite;
+}
+
+/* Slight image breathing effect */
+.hero__visual--speaking .hero__image-frame {
+  animation: heroImageBreath 2s ease-in-out infinite;
+}
+
+/* Glow */
+@keyframes heroVoiceGlow {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(0.9);
+    opacity: 0.65;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.12);
+    opacity: 1;
+  }
+}
+
+/* Expanding voice wave */
+@keyframes heroVoicePulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.75);
+    opacity: 0.7;
+  }
+
+  70% {
+    transform: translate(-50%, -50%) scale(1.25);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.25);
+    opacity: 0;
+  }
+}
+
+/* Ring rotations */
+@keyframes heroRingRotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes heroRingRotateReverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* Ring breathing */
+@keyframes heroRingPulse {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Image subtle movement */
+@keyframes heroImageBreath {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.015);
+  }
+}
+
+/* Mobile adjustment */
+@media (max-width: 700px) {
+  .hero__visual::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .hero__visual--speaking::after {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+/* Respect reduced-motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .hero__visual--speaking::before,
+  .hero__visual--speaking::after,
+  .hero__visual--speaking .hero__ring--1,
+  .hero__visual--speaking .hero__ring--2,
+  .hero__visual--speaking .hero__ring--3,
+  .hero__visual--speaking .hero__image-frame {
+    animation: none;
+  }
+}

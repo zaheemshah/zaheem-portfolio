@@ -1,8 +1,10 @@
+
 import { useEffect, useState } from 'react';
 
 export default function ProjectCard({ project, index }) {
   const isMovieHub = project.title === 'Movie Hub';
   const isMernStore = project.title === 'MERN E-Commerce Store';
+  const isPennyWise = project.title === 'PennyWise Expense Tracker';
 
   const movieHubImages = [
     '/project-images/movie-hub-1.png',
@@ -20,25 +22,37 @@ export default function ProjectCard({ project, index }) {
     '/project-images/mern-ecommerce5.png',
   ];
 
+  const pennyWiseImages = [
+    '/project-images/pennywise-dashboard.png',
+    '/project-images/pennywise-expenses.png',
+    '/project-images/pennywise-budget.png',
+  ];
+
   const images = isMovieHub
     ? movieHubImages
     : isMernStore
       ? mernStoreImages
-      : project.image
-        ? [project.image]
-        : [];
+      : isPennyWise
+        ? pennyWiseImages
+        : project.image
+          ? [project.image]
+          : [];
 
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
-    if ((!isMovieHub && !isMernStore) || images.length <= 1) return;
+    setCurrentImage(0);
+  }, [project.title]);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
 
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev + 1) % images.length);
     }, 3500);
 
     return () => clearInterval(interval);
-  }, [isMovieHub, isMernStore, images.length]);
+  }, [project.title, images.length]);
 
   const goToPrevious = (e) => {
     e.preventDefault();
@@ -63,7 +77,6 @@ export default function ProjectCard({ project, index }) {
       }`}
       style={{ transitionDelay: `${index * 100}ms` }}
     >
-      {/* IMAGE */}
       <div
         className="project-card__image"
         style={{ background: project.gradient }}
@@ -73,13 +86,17 @@ export default function ProjectCard({ project, index }) {
             src={images[currentImage]}
             alt={`${project.title} screenshot ${currentImage + 1}`}
             className="project-card__image-img"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+            onLoad={(e) => {
+              e.currentTarget.style.display = 'block';
+            }}
           />
         )}
 
-        {/* Dark image gradient */}
         <div className="project-card__image-gradient" />
 
-        {/* Top information */}
         <div className="project-card__top">
           <span className="project-card__number">
             {String(index + 1).padStart(2, '0')}
@@ -93,8 +110,7 @@ export default function ProjectCard({ project, index }) {
           )}
         </div>
 
-        {/* Slider controls */}
-        {(isMovieHub || isMernStore) && images.length > 1 && (
+        {images.length > 1 && (
           <>
             <button
               type="button"
@@ -136,7 +152,6 @@ export default function ProjectCard({ project, index }) {
           </>
         )}
 
-        {/* Hover links */}
         <div className="project-card__overlay">
           <div className="project-card__links">
             {project.liveUrl && (
@@ -166,7 +181,6 @@ export default function ProjectCard({ project, index }) {
         </div>
       </div>
 
-      {/* CONTENT */}
       <div className="project-card__body">
         <div className="project-card__heading">
           <div>
@@ -196,7 +210,6 @@ export default function ProjectCard({ project, index }) {
           ))}
         </div>
 
-        {/* Bottom actions */}
         <div className="project-card__footer">
           <div className="project-card__footer-line" />
 

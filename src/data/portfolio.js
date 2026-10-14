@@ -126,18 +126,20 @@ export const projects = [
     featured: true,
   },
 
+  
   {
-  id: 3,
-  title: 'Flutter Expense Tracker',
-  description:
-    'A modern cross-platform expense tracking application built with Flutter and Dart, designed to help users manage daily expenses, organize spending and understand their financial activity through a clean mobile interface.',
-  image: null,
-  gradient: 'linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)',
-  tags: ['Flutter', 'Dart', 'Mobile App', 'UI/UX'],
-  liveUrl: null,
-  githubUrl: null,
-  featured: false,
-},
+    id: 3,
+    title: 'PennyWise Expense Tracker',
+    description:
+      'A modern expense tracker built with Flutter and Dart. Track daily expenses, manage monthly budgets, search transactions, view category-wise spending reports and export transaction data.',
+    image: '/project-images/pennywise-dashboard.png',
+    gradient: 'linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)',
+    tags: ['Flutter', 'Dart', 'Expense Tracking', 'Budget Management'],
+    liveUrl: 'https://zaheemshah.github.io/pennywise-expense-tracker/',
+    githubUrl: 'https://github.com/zaheemshah/pennywise-expense-tracker',
+    featured: true,
+  },
+
 ];
 
 export const experience = [
